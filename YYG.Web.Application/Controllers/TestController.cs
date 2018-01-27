@@ -23,7 +23,8 @@ namespace YYG.Web.Application.Controllers
         // GET: Test
         public ActionResult Index()
         {
-            //var num = myRepository1.Get();
+            //var num = myRepository1.Get();11111
+
             var bll = new VehicleBusiness();
 
             bll.Search();
