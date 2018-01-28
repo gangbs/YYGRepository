@@ -24,7 +24,7 @@ namespace YYG.Repository
             var query = Expression.Equal(member, constant);
             var exp = Expression.Lambda<Func<SellerEntity, bool>>(query, parameter);
 
-          var lst=  this.GetList(exp).ToList();
+          var lst=  this.GetList(exp);
         }
 
         public void TransactionTest3()

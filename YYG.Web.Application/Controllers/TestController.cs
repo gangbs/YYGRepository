@@ -6,7 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using YYG.Business;
 using YYG.Core;
+using YYG.Entity;
 using YYG.IRepository;
+using YYG.Web.Application.Models;
 
 namespace YYG.Web.Application.Controllers
 {
@@ -27,7 +29,13 @@ namespace YYG.Web.Application.Controllers
 
             var bll = new VehicleBusiness();
 
-            bll.Search();
+            //bll.JoinSearch();
+            //bll.Search();
+
+            var model = new VehicleQueryModel { BuyDate=DateTime.Now, EngineNo="111" };
+           var filter= YYG.Framework.ORM.ExpressionHelper.CreateExpression<VehicleInfoEntity, VehicleQueryModel>(model);
+            bll.Search(filter);
+
 
             //bll.Add();
             return View();

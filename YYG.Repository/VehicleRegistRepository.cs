@@ -24,7 +24,7 @@ namespace YYG.Repository
 
             var reg = from r in this.dbSet
                       join info in infoSet on r.ElectricID equals info.ElectricID
-                      join lic in licSet on r.ElectricID equals lic.ElectricID
+                      join lic in licSet on r.ElectricID equals lic.ElectricID                      
                       where r.ElectricID == 282
                       select new { Reg = r, Info = info, Lic = lic };
 
@@ -45,15 +45,26 @@ namespace YYG.Repository
 
         }
 
-        public Tuple<VehicleRegistEntity, VehicleInfoEntity, VehicleLicenseEntity> Test()
+        public IEnumerable<Tuple< VehicleInfoEntity,VehicleRegistEntity>> Test()
         {
+            var infoSet = this.context.Set<VehicleInfoEntity>();           
+            //var exp = this.dbSet.Join(infoSet, x => x.ElectricID, y => y.ElectricID, (x, y) => new { reg = x, info = y }).Where(x => x.reg.ElectricID == 1);
 
-            //var a= this.dbSet.Include(reg => reg.Info).Include(reg => reg.License).Where(x => x.ElectricID == 204);
 
-            var infoSet = this.context.Set<VehicleInfoEntity>();
-           var a= infoSet.Include(m => m.Regist).Where(x => x.ElectricID == 204); ;
+            //var b = exp.AsNoTracking().ToList();
+            //return null;
+
+            var reg = (from r in this.dbSet
+                      join info in infoSet on r.ElectricID equals info.ElectricID
+                      select new { Reg = r, Info = info}).Where(x => x.Reg.ElectricID == 1).AsNoTracking().ToList();
+           var st= this.context.Entry(reg[0].Info).State;
 
             return null;
+        }
+
+        public void IncludeTest()
+        {
+            var a = this.dbSet.Include(m => m.Info).Include(m => m.License).Where(x => x.ElectricID == 1).ToList();
         }
     }
 }

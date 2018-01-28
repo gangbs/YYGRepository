@@ -9,6 +9,9 @@ namespace YYG.IRepository
 {
    public interface IVehicleRegistRepository : IBaseRepository<VehicleRegistEntity>
     {
-        Tuple<VehicleRegistEntity, VehicleInfoEntity, VehicleLicenseEntity> Test();
+        IEnumerable<Tuple<VehicleInfoEntity, VehicleRegistEntity>> Test();
+
+
+        void IncludeTest();
     }
 }

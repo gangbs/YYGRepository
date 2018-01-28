@@ -68,8 +68,8 @@ namespace YYG.Entity
         [ForeignKey("OwnerID")]
         public virtual VehicleOwnerEntity Owner { get; set; }
 
-        //public virtual VehicleInfoEntity Info { get; set; }
+        public virtual ICollection<VehicleInfoEntity> Info { get; set; }
 
-        //public virtual VehicleLicenseEntity License { get; set; }
+        public virtual ICollection<VehicleLicenseEntity> License { get; set; }
     }
 }

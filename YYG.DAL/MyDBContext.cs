@@ -24,7 +24,7 @@ namespace YYG.DAL
         //用webConfig中的配置来连接数据库
         public MyDBContext() : base("MyConnection")
         {
-            //System.Data.Entity.Migrations.DbMigrationsConfiguration
+            this.Configuration.LazyLoadingEnabled = false;
         }
 
         /// <summary>
@@ -62,6 +62,9 @@ namespace YYG.DAL
             //Database.SetInitializer(new MigrateDatabaseToLatestVersion<MyDBContext, Migrations.Configuration>());//自动更新数据库,省去了update-database命令
 
             //modelBuilder.HasDefaultSchema("");
+
+            //modelBuilder.Entity<VehicleRegistEntity>().HasRequired(m => m.Owner).WithMany(m => m.Regist).HasForeignKey(m => m.OwnerID);
+            //modelBuilder.Entity<VehicleInfoEntity>().HasRequired(m => m.Regist).WithMany(m => m.in).HasForeignKey(m => m.OwnerID);
 
         }
     }

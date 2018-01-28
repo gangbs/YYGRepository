@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using YYG.DAL.Facade;
@@ -33,7 +34,21 @@ namespace YYG.Business
            // var p= rep.Get(25);
 
             var rep= (ISellerRepository)this.uw.GetRepository(typeof(ISellerRepository)) ;
-            rep.DynamicCondition();
+           var a= rep.Get(x => x.OwerName.Contains("y"));
+            
+            //rep.DynamicCondition();
+        }
+
+        public void Search(Expression<Func<VehicleInfoEntity, bool>> filter)
+        {
+            var rep = (IVehicleInfoRepository)this.uw.GetRepository(typeof(IVehicleInfoRepository));
+            var a = rep.GetList(filter).ToList();
+            var b = rep.GetList(x=>x.BuyDate<=DateTime.Now&x.BrandID>=0&x.ElectricID==1).ToList();
+        }
+        public void JoinSearch()
+        {
+            var rep = (IVehicleRegistRepository)this.uw.GetRepository(typeof(IVehicleRegistRepository));
+            rep.Test();
         }
 
 

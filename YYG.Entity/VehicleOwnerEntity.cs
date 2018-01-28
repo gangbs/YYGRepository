@@ -72,7 +72,7 @@ namespace YYG.Entity
         [StringLength(200)]
         public string Remark { get; set; }
 
-        //public virtual VehicleRegistEntity Regist { get; set; }
+        public virtual ICollection<VehicleRegistEntity> Regist { get; set; }
 
     }
 }
