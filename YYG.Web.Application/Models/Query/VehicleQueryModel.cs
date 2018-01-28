@@ -9,30 +9,25 @@ namespace YYG.Web.Application.Models
     public class VehicleQueryModel
     {
         [Ignore]
-        public int VehicleKind { get; set; }        
+        public int VehicleKind { get; set; }
 
+        [Ignore]
         public Int32 BrandID { get; set; }
 
+        [Ignore]
         public string VehicleModel { get; set; }
 
-      
+        [Ignore]
         public int VehicleType { get; set; }
 
+        [Ignore]
         public Int32 MainColor { get; set; }
-       
-        public Int32 SecondaryColor { get; set; }
-        
+
+        [Compare(CompareEnum.LeftLike)]
         public String EngineNo { get; set; }
 
+        [Compare(CompareEnum.Like)]
         public String FrameNo { get; set; }
-        
-        public double Weight { get; set; }
-       
-        public Int32 SpeedMax { get; set; }
-
-
-        public decimal BuyPrice { get; set; }
-
         
         [Compare(CompareEnum.GtEq)]
         public DateTime BuyDate { get; set; }

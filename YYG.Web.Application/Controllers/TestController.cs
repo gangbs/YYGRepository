@@ -32,7 +32,7 @@ namespace YYG.Web.Application.Controllers
             //bll.JoinSearch();
             //bll.Search();
 
-            var model = new VehicleQueryModel { BuyDate=DateTime.Now, EngineNo="111" };
+            var model = new VehicleQueryModel { BuyDate=DateTime.Now, EngineNo="111", FrameNo="ttt" };
            var filter= YYG.Framework.ORM.ExpressionHelper.CreateExpression<VehicleInfoEntity, VehicleQueryModel>(model);
             bll.Search(filter);
 

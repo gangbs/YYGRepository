@@ -43,7 +43,7 @@ namespace YYG.Business
         {
             var rep = (IVehicleInfoRepository)this.uw.GetRepository(typeof(IVehicleInfoRepository));
             var a = rep.GetList(filter).ToList();
-            var b = rep.GetList(x=>x.BuyDate<=DateTime.Now&x.BrandID>=0&x.ElectricID==1).ToList();
+            //var b = rep.GetList(x=>x.BuyDate<=DateTime.Now&x.BrandID>=0&x.ElectricID==1).ToList();
         }
         public void JoinSearch()
         {

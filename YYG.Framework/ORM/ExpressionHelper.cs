@@ -47,7 +47,7 @@ namespace YYG.Framework.ORM
             lstValidProperty = lstValidProperty.OrderBy(x => x.Item1).ToList();
 
             ParameterExpression parameter = Expression.Parameter(typeof(T));
-            BinaryExpression query = null;
+            Expression query = null;
             for (int i=0;i<lstValidProperty.Count;i++)
             {
                 var p = lstValidProperty[i].Item2;
@@ -64,7 +64,7 @@ namespace YYG.Framework.ORM
 
                 ConstantExpression constant = Expression.Constant(val);
                 MemberExpression member = Expression.PropertyOrField(parameter, fieldName);
-                BinaryExpression bin;
+                Expression bin;
                 switch (compareType)
                 {
                     case CompareEnum.Eq:
@@ -85,8 +85,15 @@ namespace YYG.Framework.ORM
                     case CompareEnum.LtEq:
                         bin = Expression.LessThanOrEqual(member, constant);
                         break;
-                    //case CompareEnum.Like:
-                    //     Expression.Call(typeof(string).GetMethod(nameof(string.Contains)), constant);
+                    case CompareEnum.Like:
+                       bin= Expression.Call(member, typeof(string).GetMethod(nameof(string.Contains)), constant);
+                        break;
+                    case CompareEnum.LeftLike:
+                        bin= Expression.Call(member, typeof(string).GetMethod(nameof(string.StartsWith),new Type[] {typeof(string)}), constant);
+                        break;
+                    case CompareEnum.RightLike:
+                        bin = Expression.Call(member, typeof(string).GetMethod(nameof(string.EndsWith)), constant);
+                        break;
                     default:
                         bin = Expression.Equal(member, constant);
                         break;
