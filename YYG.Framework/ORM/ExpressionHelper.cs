@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace YYG.Framework.ORM
 {
-   public class ExpressionHelper
+   public class QueryExpression
     {
         /// <summary>
         /// 将查询条件model转换成表达式树
@@ -32,7 +32,7 @@ namespace YYG.Framework.ORM
                 //如果model中对应的值为null，也直接忽略
                 if (p.GetValue(model)==null) continue;
 
-                var compare = p.GetCustomAttribute<CompareAttribute>();
+                var compare = p.GetCustomAttribute<QueryCompareAttribute>();
 
                 int order = compare!=null?compare.Order:0 ;
                 
@@ -55,58 +55,58 @@ namespace YYG.Framework.ORM
 
                 string fieldName = p.Name;
                 CompareEnum compareType = CompareEnum.Eq;
-                var compare = p.GetCustomAttribute<CompareAttribute>();
+                var compare = p.GetCustomAttribute<QueryCompareAttribute>();
                 if(compare!=null)
                 {
-                    fieldName = string.IsNullOrWhiteSpace(compare.ColumnName) ? p.Name : compare.ColumnName;
+                    fieldName = string.IsNullOrWhiteSpace(compare.FieldName) ? p.Name : compare.FieldName;
                     compareType = compare.compare;
                 }
 
                 ConstantExpression constant = Expression.Constant(val);
                 MemberExpression member = Expression.PropertyOrField(parameter, fieldName);
-                Expression bin;
+                Expression exp;
                 switch (compareType)
                 {
                     case CompareEnum.Eq:
-                        bin = Expression.Equal(member, constant);
+                        exp = Expression.Equal(member, constant);
                         break;
                     case CompareEnum.NotEq:
-                        bin = Expression.NotEqual(member, constant);
+                        exp = Expression.NotEqual(member, constant);
                         break;
                     case CompareEnum.Gt:
-                        bin = Expression.GreaterThan(member, constant);
+                        exp = Expression.GreaterThan(member, constant);
                         break;
                     case CompareEnum.GtEq:
-                        bin = Expression.GreaterThanOrEqual(member, constant);
+                        exp = Expression.GreaterThanOrEqual(member, constant);
                         break;
                     case CompareEnum.Lt:
-                        bin = Expression.LessThan(member, constant);
+                        exp = Expression.LessThan(member, constant);
                         break;
                     case CompareEnum.LtEq:
-                        bin = Expression.LessThanOrEqual(member, constant);
+                        exp = Expression.LessThanOrEqual(member, constant);
                         break;
                     case CompareEnum.Like:
-                       bin= Expression.Call(member, typeof(string).GetMethod(nameof(string.Contains)), constant);
+                        exp = Expression.Call(member, typeof(string).GetMethod(nameof(string.Contains)), constant);
                         break;
                     case CompareEnum.LeftLike:
-                        bin= Expression.Call(member, typeof(string).GetMethod(nameof(string.StartsWith),new Type[] {typeof(string)}), constant);
+                        exp = Expression.Call(member, typeof(string).GetMethod(nameof(string.StartsWith),new Type[] {typeof(string)}), constant);
                         break;
                     case CompareEnum.RightLike:
-                        bin = Expression.Call(member, typeof(string).GetMethod(nameof(string.EndsWith)), constant);
+                        exp = Expression.Call(member, typeof(string).GetMethod(nameof(string.EndsWith)), constant);
                         break;
                     default:
-                        bin = Expression.Equal(member, constant);
+                        exp = Expression.Equal(member, constant);
                         break;
                 }
 
 
                 if(i==0)
                 {
-                    query = bin;
+                    query = exp;
                 }
                 else
                 {
-                    query = Expression.And(query, bin);
+                    query = Expression.And(query, exp);
                 }              
             }
             return Expression.Lambda<Func<T, bool>>(query, parameter);

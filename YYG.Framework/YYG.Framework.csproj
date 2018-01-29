@@ -94,7 +94,7 @@
     <Compile Include="Filter\MyAuthorizationAttribute.cs" />
     <Compile Include="Filter\MyExceptionAttribute.cs" />
     <Compile Include="Filter\MyResultAttribute.cs" />
-    <Compile Include="ORM\Attribute\CompareAttribute.cs" />
+    <Compile Include="ORM\Attribute\QueryCompareAttribute.cs" />
     <Compile Include="ORM\Attribute\IgnoreAttribute.cs" />
     <Compile Include="ORM\CompareEnum.cs" />
     <Compile Include="ORM\ExpressionHelper.cs" />

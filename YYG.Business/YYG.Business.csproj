@@ -56,6 +56,10 @@
       <Project>{DA7092D2-ABA4-4473-B9D0-4D1810C383B5}</Project>
       <Name>YYG.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\YYG.Framework\YYG.Framework.csproj">
+      <Project>{2d084d46-3122-4900-af9a-96cedb01d2f1}</Project>
+      <Name>YYG.Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\YYG.IRepository\YYG.IRepository.csproj">
       <Project>{6EAE58E3-1246-4ACC-A5C4-64E3EBFFE813}</Project>
       <Name>YYG.IRepository</Name>

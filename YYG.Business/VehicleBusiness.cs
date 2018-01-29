@@ -5,7 +5,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using YYG.DAL.Facade;
+using YYG.DTO;
 using YYG.Entity;
+using YYG.Framework.ORM;
 using YYG.IRepository;
 
 namespace YYG.Business
@@ -18,52 +20,24 @@ namespace YYG.Business
             this.uw = new UnitOfWork();
         }
 
-        public void Search()
+        public void CommonSearch()
         {
-            //var p= this.uw.PoliceRepository.Get(true,41);
-
-            // var p2 = this.uw.PoliceRepository.Get(x => x.PoliceID == 41, false);
-
-            // var lst = this.uw.PoliceRepository.GetAll().ToList();
-
-            //var owner = this.uw.VehicleRegistRepository.Get(true, 282).Owner;
-
-            //var tt= this.uw.VehicleRegistRepository.Test();
-
-           //var rep= (ISellerRepository)this.uw.GetRepository(typeof(ISellerRepository));
-           // var p= rep.Get(25);
-
-            var rep= (ISellerRepository)this.uw.GetRepository(typeof(ISellerRepository)) ;
-           var a= rep.Get(x => x.OwerName.Contains("y"));
-            
-            //rep.DynamicCondition();
+            var rep = (IPoliceRepository)this.uw.GetRepository(typeof(IPoliceRepository));
+           var lst= rep.GetList(x => x.AreaCode.StartsWith("10001"));
         }
 
-        public void Search(Expression<Func<VehicleInfoEntity, bool>> filter)
+        /// <summary>
+        /// 多表连接，动态查询条件
+        /// </summary>
+        public void ManyTableDynamicCondition()
         {
-            var rep = (IVehicleInfoRepository)this.uw.GetRepository(typeof(IVehicleInfoRepository));
-            var a = rep.GetList(filter).ToList();
-            //var b = rep.GetList(x=>x.BuyDate<=DateTime.Now&x.BrandID>=0&x.ElectricID==1).ToList();
-        }
-        public void JoinSearch()
-        {
-            var rep = (IVehicleRegistRepository)this.uw.GetRepository(typeof(IVehicleRegistRepository));
-            rep.Test();
-        }
-
-
-        public void Add()
-        {
-            // var seller = new SellerEntity { SellerID=1, AccountID=1, AreaCode= "10001", UserRole=3, OperatorID=2, OperatorTime=DateTime.Now, CreatorID=2, CreateTime=DateTime.Now };
-            // var sellerBrand = new SellerBrandEntity { SellerID=1, BrandID=1 };
-
-            // this.uw.SellerBrandRepository.Insert(sellerBrand, false);
-            // this.uw.SellerRepository.Insert(seller,false);
-
-            //int count= this.uw.Save();
-
-            
-        }
+            var query = new VehicleQueryDto();
+            query.CarNo ="9";
+            var filter = QueryExpression.CreateExpression<VehicleInfoDto, VehicleQueryDto>(query);
+            var rep= (IVehicleRegistRepository)this.uw.GetRepository(typeof(IVehicleRegistRepository));
+            int count;
+           var lst= rep.GetInfoList(filter, 10, 1, out count);
+        }                
 
         public void TransactionTest1()
         {

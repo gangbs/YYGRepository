@@ -34,10 +34,6 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -61,6 +57,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\YYG.DTO\YYG.DTO.csproj">
+      <Project>{27fe3646-66a7-4e98-a40c-2a736e7bbcd8}</Project>
+      <Name>YYG.DTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\YYG.Entity\YYG.Entity.csproj">
       <Project>{DA7092D2-ABA4-4473-B9D0-4D1810C383B5}</Project>
       <Name>YYG.Entity</Name>

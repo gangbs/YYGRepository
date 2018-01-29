@@ -23,13 +23,13 @@ namespace YYG.Web.Application.Models
         [Ignore]
         public Int32 MainColor { get; set; }
 
-        [Compare(CompareEnum.LeftLike)]
+        [QueryCompare(CompareEnum.LeftLike)]
         public String EngineNo { get; set; }
 
-        [Compare(CompareEnum.Like)]
+        [QueryCompare(CompareEnum.Like)]
         public String FrameNo { get; set; }
         
-        [Compare(CompareEnum.GtEq)]
+        [QueryCompare(CompareEnum.GtEq)]
         public DateTime BuyDate { get; set; }
 
     }

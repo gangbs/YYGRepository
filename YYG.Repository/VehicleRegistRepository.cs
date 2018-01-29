@@ -4,8 +4,10 @@ using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using YYG.DTO;
 using YYG.Entity;
 using YYG.IRepository;
 
@@ -17,54 +19,37 @@ namespace YYG.Repository
         {
         }
 
-        public Tuple<VehicleRegistEntity, VehicleInfoEntity, VehicleLicenseEntity> Test2()
+        public IEnumerable<VehicleInfoDto> GetInfoList(Expression<Func<VehicleInfoDto, bool>> filter, int pageSize, int pageNum, out int count)
         {
-            var infoSet= this.context.Set<VehicleInfoEntity>();
-            var licSet = this.context.Set<VehicleLicenseEntity>();
+            var linq = from reg in this.dbSet
+                            join info in this.context.Set<VehicleInfoEntity>() on reg.ElectricID equals info.ElectricID
+                            join lic in this.context.Set<VehicleLicenseEntity>() on reg.ElectricID equals lic.ElectricID                            
+                            select new VehicleInfoDto
+                            {
+                                ElectricID = reg.ElectricID,
+                                CreateTime = reg.CreateTime,
 
-            var reg = from r in this.dbSet
-                      join info in infoSet on r.ElectricID equals info.ElectricID
-                      join lic in licSet on r.ElectricID equals lic.ElectricID                      
-                      where r.ElectricID == 282
-                      select new { Reg = r, Info = info, Lic = lic };
-
-
-            var aa = reg.AsNoTracking().FirstOrDefault();
-
-            var tt = new Tuple<VehicleRegistEntity, VehicleInfoEntity, VehicleLicenseEntity>(aa?.Reg, aa?.Info, aa?.Lic);
-            return tt;
-
-
-            //var reg = from r in this.dbSet
-            //          join info in infoSet on r.ElectricID equals info.ElectricID
-            //          join lic in licSet on r.ElectricID equals lic.ElectricID
-            //          where r.ElectricID == 282
-            //          select new { Reg = r, Info = info, Lic = lic };
-            //reg.Where(x=>x.Info.)
-
-
-        }
-
-        public IEnumerable<Tuple< VehicleInfoEntity,VehicleRegistEntity>> Test()
-        {
-            var infoSet = this.context.Set<VehicleInfoEntity>();           
-            //var exp = this.dbSet.Join(infoSet, x => x.ElectricID, y => y.ElectricID, (x, y) => new { reg = x, info = y }).Where(x => x.reg.ElectricID == 1);
-
-
-            //var b = exp.AsNoTracking().ToList();
-            //return null;
-
-            var reg = (from r in this.dbSet
-                      join info in infoSet on r.ElectricID equals info.ElectricID
-                      select new { Reg = r, Info = info}).Where(x => x.Reg.ElectricID == 1).AsNoTracking().ToList();
-           var st= this.context.Entry(reg[0].Info).State;
-
-            return null;
-        }
-
-        public void IncludeTest()
-        {
-            var a = this.dbSet.Include(m => m.Info).Include(m => m.License).Where(x => x.ElectricID == 1).ToList();
+                                AreaCode = reg.AreaCode,
+                                BrandID = info.BrandID,
+                                BuyDate = info.BuyDate,
+                                BuyPrice = info.BuyPrice,
+                                CarNo = lic.CarNo,
+                                CarRFID = lic.CarRFID,
+                                CreateID = reg.CreateID,
+                                EngineNo = info.EngineNo,
+                                FrameNo = info.FrameNo,
+                                MainColor = info.MainColor,
+                                PowerRFID = lic.PowerRFID,
+                                SecondaryColor = info.SecondaryColor,
+                                SpeedMax = info.SpeedMax,
+                                VehicleKind = info.VehicleKind,
+                                VehicleModel = info.VehicleModel,
+                                VehicleType = info.VehicleType,
+                                Weight = info.Weight
+                            };
+            count = linq.Where(filter).AsNoTracking().Count();
+            var lst=linq.Where(filter).OrderBy(x=>x.ElectricID).Skip(pageSize * (pageNum - 1)).Take(pageSize).AsNoTracking();
+            return lst.ToList();
         }
     }
 }
