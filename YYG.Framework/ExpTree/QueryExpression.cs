@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace YYG.Framework.ORM
+namespace YYG.Framework.ExpTree
 {
    public class QueryExpression
     {
