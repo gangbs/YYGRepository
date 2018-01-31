@@ -120,6 +120,7 @@
     <Compile Include="Quartz\MyJob.cs" />
     <Compile Include="Quartz\ScheduleServer.cs" />
     <Compile Include="Reflection\ReflectionMethod.cs" />
+    <Compile Include="Threads\TimeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
