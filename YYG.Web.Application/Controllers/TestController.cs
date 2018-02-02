@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using YYG.Business;
 using YYG.Core;
 using YYG.Entity;
+using YYG.Framework.Net;
 using YYG.IRepository;
 using YYG.Web.Application.Models;
 
@@ -42,6 +44,17 @@ namespace YYG.Web.Application.Controllers
 
             bll.ManyTableDynamicCondition();
             return View();
+        }
+
+
+        public ActionResult ApiTest()
+        {
+            string url = "http://localhost:13382/api/Test";
+            var http = new HttpHelper();
+            //var r= Task.Run(async () => await http.Post(url, "8")).Result;
+
+            var r = Task.Run(async () => await http.Post<int>(url, 8)).Result;
+            return null;
         }
     }
 }

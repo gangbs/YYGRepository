@@ -93,21 +93,14 @@ namespace YYG.Framework.Net
                 result = null;
             }
 
-            try
+            using (var http = this.InitHttp())
             {
-                using (var http = this.InitHttp())
-                {
-                    string json = data.ToJson<T>();
-                    HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                    var response = await http.PostAsync(url, content);
-                    result = response.ConvertToResult();
-                    response.EnsureSuccessStatusCode();//保证请求成功，失败的话报错
-                    result = await response.Content.ReadAsStringAsync().ContinueWith(m => new HttpResponseResult(m.Result, HttpStatusCode.OK));
-                }
-            }
-            catch (HttpRequestException ex)
-            {
-                result = new HttpResponseResult(ex.Message, HttpStatusCode.InternalServerError);
+                string json = data.ToJson<T>();
+                HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await http.PostAsync(url, content);
+                result = response.ConvertToResult();
+                //response.EnsureSuccessStatusCode();//保证请求成功，失败的话报错
+                //result = await response.Content.ReadAsStringAsync().ContinueWith(m => new HttpResponseResult(m.Result, HttpStatusCode.OK));
             }
 
             return result;
@@ -149,6 +142,24 @@ namespace YYG.Framework.Net
                 }
             }
             return result;
+        }
+
+        public async Task<HttpResponseMessage> Post(string url, string json)
+        {
+            HttpResponseMessage response = null;
+            if (string.IsNullOrWhiteSpace(json))
+            {
+                response = null;
+            }
+
+            using (var http = this.InitHttp())
+            {
+                HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                response = await http.PostAsync(url, content);
+            }
+
+
+            return response;
         }
 
 
