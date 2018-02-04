@@ -46,7 +46,13 @@ namespace YYG.Repository
         public IEnumerable<T> GetList(Expression<Func<T, bool>> filter)
         {
             return this.dbSet.Where(filter).AsNoTracking();
-        }        
+        }
+
+        public IEnumerable<TReturn> GetList<TReturn>(IQueryable<TReturn> linq) where TReturn : DataBaseEntity
+        {
+           return linq.AsNoTracking();
+        }
+
         public IEnumerable<T> GetList(string sql, params object[] parameters)
         {
             return this.dbSet.SqlQuery(sql, parameters).AsNoTracking();
@@ -70,6 +76,8 @@ namespace YYG.Repository
             }
             return lstReturn;
         }
+
+
 
         #endregion
 

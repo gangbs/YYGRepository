@@ -26,6 +26,8 @@ namespace YYG.IRepository
 
         IEnumerable<T> GetPaging(Expression<Func<T, bool>> filter, Expression<Func<T, object>> orderFiled, int pageSize, int pageNum, out int count, bool isAsc = true);
 
+        IEnumerable<TReturn> GetList<TReturn>(IQueryable<TReturn> linq) where TReturn : DataBaseEntity;
+
         #endregion
 
         #region 增加
