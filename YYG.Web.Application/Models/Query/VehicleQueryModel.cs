@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using YYG.Framework.ORM;
+using YYG.Framework.ExpTree;
 
 namespace YYG.Web.Application.Models
 {
