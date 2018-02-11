@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using YYG.Web.Application.Models;
+using Microsoft.Owin.Security.OAuth;
 
 namespace YYG.Web.Application
 {
@@ -63,6 +64,9 @@ namespace YYG.Web.Application
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
+
+
         }
     }
 }
