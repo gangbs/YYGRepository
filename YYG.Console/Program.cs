@@ -12,17 +12,21 @@ namespace YYG.Console
     {
         static void Main(string[] args)
         {
-            HostFactory.Run(x =>
-            {
-                x.Service<ScheduleServer>();
+            //HostFactory.Run(x =>
+            //{
+            //    x.Service<ScheduleServer>();
 
-                x.SetDescription("TDR任务调度服务");
-                x.SetDisplayName("TDR任务调度服务");
-                x.SetServiceName("TDR任务调度服务");
+            //    x.SetDescription("TDR任务调度服务");
+            //    x.SetDisplayName("TDR任务调度服务");
+            //    x.SetServiceName("TDR任务调度服务");
 
-                x.EnablePauseAndContinue();
+            //    x.EnablePauseAndContinue();
 
-            });
+            //});
+
+            var t = new RedisTest();
+            t.Test();
+
         }
     }
 }

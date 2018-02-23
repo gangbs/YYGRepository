@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -14,6 +15,8 @@ namespace YYG.Web.API.Controllers
         [Route("api/authorization_code")]
         public HttpResponseMessage Get(string code)
         {
+            
+
             return new HttpResponseMessage()
             {
                 Content = new StringContent(code, Encoding.UTF8, "text/plain")
