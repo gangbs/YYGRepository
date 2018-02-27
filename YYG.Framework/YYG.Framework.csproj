@@ -148,6 +148,7 @@
     <Compile Include="Net\http\HttpHelper.cs" />
     <Compile Include="Net\http\HttpResponseExtension.cs" />
     <Compile Include="Net\http\HttpResponseResult.cs" />
+    <Compile Include="Net\smtp\EmailHelper.cs" />
     <Compile Include="OAuth\MyAuthorizationCodeProvider.cs" />
     <Compile Include="OAuth\MyClient.cs" />
     <Compile Include="OAuth\MyOAuthAuthorizationServerProvider.cs" />

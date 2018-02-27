@@ -24,7 +24,7 @@ namespace YYG.IRepository
 
         IEnumerable<TReturn> GetList<TReturn>(string sql, params object[] parameters);
 
-        IEnumerable<T> GetPaging(Expression<Func<T, bool>> filter, Expression<Func<T, object>> orderFiled, int pageSize, int pageNum, out int count, bool isAsc = true);
+        IEnumerable<T> GetPaging<K>(Expression<Func<T, bool>> filter, Expression<Func<T, K>> orderFiled, int pageSize, int pageNum, out int count, bool isAsc = true);
 
         IEnumerable<TReturn> GetList<TReturn>(IQueryable<TReturn> linq) where TReturn : DataBaseEntity;
 
