@@ -77,6 +77,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -160,6 +161,7 @@
     <Compile Include="Redis\StackExchange\RedisString.cs" />
     <Compile Include="Reflection\ReflectionMethod.cs" />
     <Compile Include="Threads\TimeHelper.cs" />
+    <Compile Include="VerifyCode\CodeImgBuilder.cs" />
     <Compile Include="VerifyCode\LetterNumCode.cs" />
     <Compile Include="VerifyCode\RandomLetterCode.cs" />
     <Compile Include="VerifyCode\RandomNumCode.cs" />
