@@ -160,6 +160,11 @@
     <Compile Include="Redis\StackExchange\RedisString.cs" />
     <Compile Include="Reflection\ReflectionMethod.cs" />
     <Compile Include="Threads\TimeHelper.cs" />
+    <Compile Include="VerifyCode\LetterNumCode.cs" />
+    <Compile Include="VerifyCode\RandomLetterCode.cs" />
+    <Compile Include="VerifyCode\RandomNumCode.cs" />
+    <Compile Include="VerifyCode\VerifyCodeContext.cs" />
+    <Compile Include="VerifyCode\VerifyCodeStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
