@@ -125,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\JsonHelper.cs" />
+    <Compile Include="DesignPatterns\Composite.cs" />
     <Compile Include="DesignPatterns\Prototype.cs" />
     <Compile Include="DesignPatterns\Singleton.cs" />
     <Compile Include="Extension\EnumExtension.cs" />
