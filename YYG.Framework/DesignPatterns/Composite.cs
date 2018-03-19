@@ -34,7 +34,7 @@ namespace YYG.Framework
         {
         }
 
-        public List<EasyUITreeNode> children = new List<EasyUITreeNode>();
+        public List<EasyUITree> children = new List<EasyUITree>();
 
         public override void Add(EasyUITree node)
         {

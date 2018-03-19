@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using YYG.Business;
 using YYG.Core;
 using YYG.Entity;
+using YYG.Framework;
 using YYG.Framework.Net;
 using YYG.IRepository;
 using YYG.Web.Application.Models;
@@ -29,7 +30,7 @@ namespace YYG.Web.Application.Controllers
         {
             //var num = myRepository1.Get();11111
 
-            var bll = new VehicleBusiness();
+            //var bll = new VehicleBusiness();
 
             //bll.JoinSearch();
             //bll.Search();
@@ -42,7 +43,8 @@ namespace YYG.Web.Application.Controllers
             //bll.Add();
 
 
-            bll.ManyTableDynamicCondition();
+            // bll.ManyTableDynamicCondition();
+            //CookieExtension.DeleteCookie("age");
             return View();
         }
 
@@ -55,6 +57,29 @@ namespace YYG.Web.Application.Controllers
 
             var r = Task.Run(async () => await http.Post<int>(url, 8)).Result;
             return null;
+        }
+
+
+        public ActionResult CheckCookie()
+        {
+            //string ads = "hangzhou";
+            //ads.WriteCookie("ads");
+
+
+            HttpCookie aCookie;
+            string cookieName;
+            int limit = Request.Cookies.Count;
+            for (int i = 0; i < limit; i++)
+            {
+                cookieName = Request.Cookies[i].Name;
+                aCookie = new HttpCookie(cookieName);
+                aCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(aCookie);
+            }
+
+
+
+            return this.Content("哈哈");
         }
     }
 }
