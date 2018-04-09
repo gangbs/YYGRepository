@@ -126,6 +126,11 @@
     <Compile Include="DesignPatterns\Composite.cs" />
     <Compile Include="DesignPatterns\Prototype.cs" />
     <Compile Include="DesignPatterns\Singleton.cs" />
+    <Compile Include="DesignPatterns\StatePattern\ConcreteState1.cs" />
+    <Compile Include="DesignPatterns\StatePattern\ConcreteState2.cs" />
+    <Compile Include="DesignPatterns\StatePattern\ConcreteState3.cs" />
+    <Compile Include="DesignPatterns\StatePattern\Context.cs" />
+    <Compile Include="DesignPatterns\StatePattern\State.cs" />
     <Compile Include="DesignPatterns\TemplateMethod.cs" />
     <Compile Include="Extension\CookieExtension.cs" />
     <Compile Include="Extension\EnumExtension.cs" />
