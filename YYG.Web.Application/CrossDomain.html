@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-1.10.2.js"></script>
+</head>
+<body>
+    <button onclick="apply()">跨域测试</button>
+
+
+    <script>
+
+        function apply() {
+
+            $.ajax({
+                type: "delete",//get,post,put,delete
+                url: "http://localhost:13382/api/Test/6",//如果调用webapi中的TestController
+                //data: { data },
+                //dataType: "json",
+                headers: {
+                    "Authorization": "Bearer " + "123456789" //把登录获取的Token加入到http请求头中
+                },
+                success: function (result) {
+                    
+                    //callback(result);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //。。。。。。
+                }
+});
+
+        }
+
+
+    </script>
+</body>
+</html>

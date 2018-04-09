@@ -41,5 +41,39 @@ namespace YYG.Web.API.Controllers
             return back;
         }
 
+
+        //[Route("api/Delete")]
+        [HttpDelete]
+        public HttpBackResult<string> Delete(int id)
+        {
+
+            //return this.CreateResponseMessage(HttpBackCode.Success, new { Name = "yyg", Age = age });
+
+            var back = new HttpBackResult<string> { Status = 2, Data = "yyg", Msg = "成功" };
+            return back;
+        }
+
+        [Route("api/Put")]
+        [HttpPut]
+        public HttpBackResult<string> Put(int id)
+        {
+
+            //return this.CreateResponseMessage(HttpBackCode.Success, new { Name = "yyg", Age = age });
+
+            var back = new HttpBackResult<string> { Status = 2, Data = "yyg", Msg = "成功" };
+            return back;
+        }
+
+
+        [Route("api/Patch")]
+        [HttpPatch]
+        public HttpBackResult<string> Patch(int id)
+        {
+
+            //return this.CreateResponseMessage(HttpBackCode.Success, new { Name = "yyg", Age = age });
+
+            var back = new HttpBackResult<string> { Status = 2, Data = "yyg", Msg = "成功" };
+            return back;
+        }
     }
 }

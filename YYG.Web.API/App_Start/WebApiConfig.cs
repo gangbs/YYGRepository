@@ -19,7 +19,7 @@ namespace YYG.Web.API
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             //跨域配置
-            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+            config.EnableCors(new EnableCorsAttribute("*", "*", "GET,POST,DELETE"));
 
             // Web API 路由
             config.MapHttpAttributeRoutes();
