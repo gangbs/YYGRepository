@@ -24,6 +24,7 @@ namespace YYG.Web.Application
             //ControllerBuilder.Current.SetControllerFactory(new MyControllerFactory());
 
             StackExchange.Profiling.EntityFramework6.MiniProfilerEF6.Initialize();
+            log4net.Config.XmlConfigurator.ConfigureAndWatch(new System.IO.FileInfo(Server.MapPath("~") + @"\App_Data\log4net.xml"));
         }
 
 

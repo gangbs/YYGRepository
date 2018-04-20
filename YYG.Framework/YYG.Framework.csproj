@@ -42,6 +42,10 @@
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
       <Private>True</Private>
@@ -168,6 +172,8 @@
     <Compile Include="ExpTree\Attribute\IgnoreAttribute.cs" />
     <Compile Include="ExpTree\CompareEnum.cs" />
     <Compile Include="ExpTree\QueryExpression.cs" />
+    <Compile Include="Log\ApiLogAttribute.cs" />
+    <Compile Include="Log\LogHelper.cs" />
     <Compile Include="Net\http\BaseApiController.cs" />
     <Compile Include="Net\http\Filter\MyApiActionFilterAttribute.cs" />
     <Compile Include="Net\http\Filter\MyApiTokenFilterAttribute.cs" />
