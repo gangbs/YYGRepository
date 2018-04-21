@@ -41,7 +41,7 @@ namespace YYG.Framework.ExpTree
 
             if(lstValidProperty.Count==0)
             {
-                return null;
+                return x => true;
             }
 
             lstValidProperty = lstValidProperty.OrderBy(x => x.Item1).ToList();
