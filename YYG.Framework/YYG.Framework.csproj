@@ -106,6 +106,7 @@
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -156,6 +157,7 @@
     <Compile Include="DesignPatterns\StatePattern\Context.cs" />
     <Compile Include="DesignPatterns\StatePattern\State.cs" />
     <Compile Include="DesignPatterns\TemplateMethod.cs" />
+    <Compile Include="ExpTree\TransExp.cs" />
     <Compile Include="Extension\CookieExtension.cs" />
     <Compile Include="Extension\EnumExtension.cs" />
     <Compile Include="Extension\JsonExtension.cs" />
@@ -197,6 +199,7 @@
     <Compile Include="Redis\StackExchange\RedisString.cs" />
     <Compile Include="Reflection\ReflectionMethod.cs" />
     <Compile Include="Threads\TimeHelper.cs" />
+    <Compile Include="Transaction\TransactionDemo.cs" />
     <Compile Include="VerifyCode\CodeImgBuilder.cs" />
     <Compile Include="VerifyCode\LetterNumCode.cs" />
     <Compile Include="VerifyCode\RandomLetterCode.cs" />
@@ -212,7 +215,6 @@
     <Folder Include="Net\socket\" />
     <Folder Include="Net\tcp\" />
     <Folder Include="Net\udp\" />
-    <Folder Include="Transaction\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

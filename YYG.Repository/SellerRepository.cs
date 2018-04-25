@@ -43,7 +43,7 @@ namespace YYG.Repository
             };
 
             using (var tt = this.context.Database.BeginTransaction())
-            {
+            {               
                 try
                 {
                     this.ExcuteSqlCommand(sql, new object[] { });
