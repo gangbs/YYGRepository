@@ -147,6 +147,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADO.NET\DataRelation.cs" />
+    <Compile Include="ADO.NET\OperateDemo.cs" />
     <Compile Include="Data\JsonHelper.cs" />
     <Compile Include="DesignPatterns\Composite.cs" />
     <Compile Include="DesignPatterns\Prototype.cs" />
@@ -196,6 +198,7 @@
     <Compile Include="Quartz\MyJob.cs" />
     <Compile Include="Quartz\ScheduleServer.cs" />
     <Compile Include="Redis\RedisBase.cs" />
+    <Compile Include="Redis\RedisHashCache.cs" />
     <Compile Include="Redis\RedisManager.cs" />
     <Compile Include="Redis\RedisStringCache.cs" />
     <Compile Include="Redis\StackExchange\RedisCommon.cs" />

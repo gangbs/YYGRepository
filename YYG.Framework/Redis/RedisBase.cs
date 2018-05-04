@@ -10,15 +10,17 @@ namespace YYG.Framework
 {
     public abstract class RedisBase
     {
-        readonly ConnectionMultiplexer db = null;
+        readonly ConnectionMultiplexer conn = null;
         readonly string prefix = string.Empty;
         readonly int dbNumber = 0;
+       protected readonly IDatabase db;
 
         public RedisBase(int dbnum, string prefix, string connectionString = null)
         {
             this.dbNumber = dbnum;
-            this.db = string.IsNullOrWhiteSpace(connectionString) ? RedisManager.Instance : RedisManager.GetFromCache(connectionString);
+            this.conn = string.IsNullOrWhiteSpace(connectionString) ? RedisManager.Instance : RedisManager.GetFromCache(connectionString);
             this.prefix = prefix;
+            this.db = this.conn.GetDatabase(dbnum);
         }
 
         #region 数据库操作
@@ -41,8 +43,8 @@ namespace YYG.Framework
         /// <returns></returns>
         protected T DoSave<T>(Func<IDatabase, T> func)
         {
-            db.GetDatabase(dbNumber);
-            return func(db.GetDatabase(dbNumber));
+            conn.GetDatabase(dbNumber);
+            return func(conn.GetDatabase(dbNumber));
         }
 
         /// <summary>
@@ -53,7 +55,7 @@ namespace YYG.Framework
         public bool Delete(string key)
         {
             key = GenRealKey(key);
-            return db.GetDatabase(dbNumber).KeyDelete(key);
+            return conn.GetDatabase(dbNumber).KeyDelete(key);
         }
 
         /// <summary>
@@ -64,7 +66,7 @@ namespace YYG.Framework
         public bool IsExist(string key)
         {
             key = GenRealKey(key);
-            return db.GetDatabase(dbNumber).KeyExists(key);
+            return conn.GetDatabase(dbNumber).KeyExists(key);
         }
 
         #endregion
