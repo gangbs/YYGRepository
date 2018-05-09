@@ -35,6 +35,8 @@ namespace YYG.IRepository
 
         int InsertMany(IEnumerable<T> lst, bool isSaveChange = true);
 
+        int BatchInsert(IEnumerable<T> lst);
+
         #endregion
 
         #region 编辑

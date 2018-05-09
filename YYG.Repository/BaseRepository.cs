@@ -99,6 +99,27 @@ namespace YYG.Repository
             return isSaveChange ? this.Save() : 0;
         }
 
+        public int BatchInsert(IEnumerable<T> lst)
+        {
+            int count = 0;
+            try
+            {
+                this.context.Configuration.AutoDetectChangesEnabled = false;
+                dbSet.AddRange(lst);
+                count= this.context.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                count = 0;
+            }
+            finally
+            {
+                this.context.Configuration.AutoDetectChangesEnabled = true;
+            }
+            return count;
+        }
+
+
         #endregion
 
         #region 编辑
