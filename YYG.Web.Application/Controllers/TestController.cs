@@ -44,7 +44,7 @@ namespace YYG.Web.Application.Controllers
 
 
             // bll.ManyTableDynamicCondition();
-            //CookieExtension.DeleteCookie("age");
+            CookieExtension.DeleteCookie("age");
             return View();
         }
 
