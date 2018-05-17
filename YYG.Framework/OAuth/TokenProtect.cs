@@ -1,4 +1,5 @@
 ﻿using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.DataHandler;
 using Microsoft.Owin.Security.DataHandler.Encoder;
 using Microsoft.Owin.Security.DataHandler.Serializer;
 using System;
@@ -13,9 +14,9 @@ namespace YYG.Framework
     public class TokenProtect
     {
         public static string Encryption(AuthenticationTicket ticket)
-        {
+        {            
             byte[] bt = new TicketSerializer().Serialize(ticket);//票证序列化器，即将AuthenticationTicket对象序列化成二进制数据
-            byte[] sBt = MachineKey.Protect(bt);//将二进制数据加密
+            byte[] sBt = MachineKey.Protect(bt);//将二进制数据加密,基于MachineKey算法
             string token = TextEncodings.Base64Url.Encode(sBt);//转化成base64url字符串（为什么不是base64）
             return token;
         }
