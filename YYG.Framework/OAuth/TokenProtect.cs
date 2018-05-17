@@ -27,5 +27,35 @@ namespace YYG.Framework
             AuthenticationTicket ticket = new TicketSerializer().Deserialize(bt);
             return ticket;
         }
+
+        public static bool TryEncryption(AuthenticationTicket ticket,out string token)
+        {
+            bool flag = false;
+            try
+            {
+                token = Encryption(ticket);
+                flag = true;
+            }
+            catch
+            {
+                token = null;
+            }
+            return flag;
+        }
+
+        public static bool TryDecrypt(string token,out AuthenticationTicket ticket)
+        {
+            bool flag = false;
+            try
+            {
+                ticket = Decrypt(token);
+                flag = true;
+            }
+            catch
+            {
+                ticket = null;
+            }
+            return flag;
+        }
     }
 }
