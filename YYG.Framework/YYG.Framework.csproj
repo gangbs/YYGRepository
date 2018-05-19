@@ -151,7 +151,9 @@
     <Compile Include="ADO.NET\OperateDemo.cs" />
     <Compile Include="Data\JsonHelper.cs" />
     <Compile Include="DesignPatterns\Composite.cs" />
+    <Compile Include="DesignPatterns\DecoratorPattern\DecoratorPattern.cs" />
     <Compile Include="DesignPatterns\Prototype.cs" />
+    <Compile Include="DesignPatterns\ProxyPattern\ProxyPattern.cs" />
     <Compile Include="DesignPatterns\Singleton.cs" />
     <Compile Include="DesignPatterns\StatePattern\ConcreteState1.cs" />
     <Compile Include="DesignPatterns\StatePattern\ConcreteState2.cs" />
