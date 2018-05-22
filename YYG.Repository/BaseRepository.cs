@@ -174,6 +174,16 @@ namespace YYG.Repository
         }
 
 
+        public int UpdatePropertys(Expression<Func<T, bool>> filter, Action<T> change, bool isSaveChange = true)
+        {
+            var lstEntity = this.dbSet.Where(filter);
+            foreach (var entity in lstEntity)
+            {
+                change(entity);
+            }
+            return isSaveChange ? this.Save() : 0;
+        }
+
         #endregion
 
         #region 删除

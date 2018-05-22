@@ -49,6 +49,8 @@ namespace YYG.IRepository
 
         int UpdatePropertys(Expression<Func<T, bool>> filter, Dictionary<string,object> fileds, bool isSaveChange = true);
 
+        int UpdatePropertys(Expression<Func<T, bool>> filter, Action<T> change, bool isSaveChange = true);
+
         #endregion
 
         #region 删除
