@@ -16,6 +16,8 @@ namespace YYG.IRepository
 
         T Get(Expression<Func<T, bool>> fliter);
 
+        IQueryable<T> GetAllIncluding<TProperty>(Expression<Func<T, TProperty>> propertySelectors)
+
         IEnumerable<T> GetAll();
 
         IEnumerable<T> GetList(Expression<Func<T, bool>> filter);

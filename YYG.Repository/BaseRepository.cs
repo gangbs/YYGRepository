@@ -39,6 +39,10 @@ namespace YYG.Repository
         {
             return this.dbSet.Where(filter).AsNoTracking().FirstOrDefault(); 
         }
+        public IQueryable<T> GetAllIncluding<TProperty>(Expression<Func<T, TProperty>> propertySelectors)
+        {
+            return this.dbSet.Include<T, TProperty>(propertySelectors);
+        }
         public IEnumerable<T> GetAll()
         {
             return this.dbSet.AsNoTracking();
