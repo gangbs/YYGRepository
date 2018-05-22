@@ -62,7 +62,8 @@ namespace YYG.Framework.ExpTree
                     compareType = compare.compare;
                 }
 
-                ConstantExpression constant = Expression.Constant(val);
+               
+                ConstantExpression constant = Expression.Constant(val, p.PropertyType);
                 MemberExpression member = Expression.PropertyOrField(parameter, fieldName);
                 Expression exp;
                 switch (compareType)
