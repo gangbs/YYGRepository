@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -34,7 +35,6 @@ namespace YYG.Web.API.Controllers
         [HttpGet]
         public HttpBackResult<string> GetInfo([FromUri]int age)
         {
-
             //return this.CreateResponseMessage(HttpBackCode.Success, new { Name = "yyg", Age = age });
 
             var back = new HttpBackResult<string> { Status=2, Data="yyg", Msg="成功" };
