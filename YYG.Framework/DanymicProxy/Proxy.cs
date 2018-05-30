@@ -6,8 +6,14 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace YYG.Framework.DanymicProxy
+namespace YYG.Framework
 {
+    public interface IInterceptor
+    {
+        object Invoke(object obj, string methodName, object[] parameters);
+    }
+
+
     public class Proxy<T> where T : class
     {
         public static T CreateProxy(IInterceptor interceptor)
@@ -17,7 +23,7 @@ namespace YYG.Framework.DanymicProxy
             AppDomain aDomain = AppDomain.CurrentDomain;//应用程序域，这里设为当前域
             AssemblyBuilder aBuidler = aDomain.DefineDynamicAssembly(aName, AssemblyBuilderAccess.RunAndSave);
             //定义模块
-            ModuleBuilder mBuidler = aBuidler.DefineDynamicModule("MyModule", "Cmj.DotNet.dll");
+            ModuleBuilder mBuidler = aBuidler.DefineDynamicModule(aName.Name);//"MyModule","Cmj.DotNet.dll" 
             //创建类型(其实就是一个类)
             StringBuilder sbClassName = new StringBuilder("Cmj.DotNet.");
             sbClassName.Append(typeof(T).Name);
@@ -30,10 +36,10 @@ namespace YYG.Framework.DanymicProxy
             //为私有变量赋值
             fbInterceptor.SetConstant(null);
             //定义构造函数
-            ConstructorBuilder ctstBuilder = tBuidler.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, new Type[] { typeof(IInterceptor) });
+            ConstructorBuilder ctstBuilder = tBuidler.DefineConstructor(MethodAttributes.Public, CallingConventions.VarArgs, new Type[] { typeof(IInterceptor) });
             ILGenerator ctstGenerator = ctstBuilder.GetILGenerator();
             ctstGenerator.Emit(OpCodes.Ldarg_0);
-            ctstGenerator.Emit(OpCodes.Ldarg_1);
+            //ctstGenerator.Emit(OpCodes.Ldarg_1);//ctstGenerator.Emit(OpCodes.Newobj, typeof(DemoInterceptor).GetConstructor(new Type[0]));
             ctstGenerator.Emit(OpCodes.Stfld, fbInterceptor);//给字段赋值
             ctstGenerator.Emit(OpCodes.Ret);
             //定义方法
@@ -96,13 +102,9 @@ namespace YYG.Framework.DanymicProxy
             //创建引用、调用方法
             Type proxyType = tBuidler.CreateType();
             aBuidler.Save("Cmj.DotNet.dll");
-            object proxy = Activator.CreateInstance(proxyType, new object[]{ interceptor});//实例化
+            object proxy = Activator.CreateInstance(proxyType, new object[] { interceptor });//实例化
             return proxy as T;
         }
 
-        public interface IInterceptor
-        {
-            object Invoke(object obj, string methodName, object[] parameters);
-        }
-}
+    }
 }

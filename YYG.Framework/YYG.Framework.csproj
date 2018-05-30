@@ -149,7 +149,10 @@
   <ItemGroup>
     <Compile Include="ADO.NET\DataRelation.cs" />
     <Compile Include="ADO.NET\OperateDemo.cs" />
+    <Compile Include="DanymicProxy\DemoInterceptor.cs" />
     <Compile Include="DanymicProxy\Proxy.cs" />
+    <Compile Include="DanymicProxy\IProxyBuilder.cs" />
+    <Compile Include="DanymicProxy\ProxyBuilder.cs" />
     <Compile Include="Data\JsonHelper.cs" />
     <Compile Include="DesignPatterns\Composite.cs" />
     <Compile Include="DesignPatterns\DecoratorPattern\DecoratorPattern.cs" />
